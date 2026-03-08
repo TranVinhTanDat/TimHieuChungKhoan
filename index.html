@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chứng Khoán 101 — Học Đầu Tư Từ Số 0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0b0f1a;
+  --bg2: #111827;
+  --bg3: #1a2235;
+  --bg4: #1e2d40;
+  --green: #00d4aa;
+  --green2: #00b894;
+  --red: #f43f5e;
+  --gold: #f59e0b;
+  --blue: #3b82f6;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --text3: #64748b;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(0,212,170,0.2);
+  --glow: 0 0 30px rgba(0,212,170,0.15);
+  --card: #131b2e;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Be Vietnam Pro',sans-serif;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--green);border-radius:3px}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  background:rgba(11,15,26,0.92);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  transition:.3s;
+}
+.nav-inner{
+  max-width:1400px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.9rem 2rem;
+}
+.nav-logo{
+  font-family:'Playfair Display',serif;
+  font-size:1.2rem;color:var(--green);
+  text-decoration:none;font-weight:700;
+  display:flex;align-items:center;gap:.5rem;
+}
+.nav-logo span{
+  font-family:'Be Vietnam Pro',sans-serif;
+  font-size:.7rem;color:var(--text2);
+  font-weight:400;letter-spacing:.1em;text-transform:uppercase;
+}
+.nav-links{display:flex;gap:.2rem;list-style:none}
+.nav-links a{
+  padding:.5rem 1rem;border-radius:6px;
+  color:var(--text2);text-decoration:none;font-size:.85rem;font-weight:500;
+  transition:.2s;white-space:nowrap;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--green);background:rgba(0,212,170,0.1)}
+.menu-btn{display:none;background:none;border:none;color:var(--text);cursor:pointer;font-size:1.4rem}
+.mobile-menu{
+  display:none;flex-direction:column;gap:.3rem;
+  padding:1rem 2rem;background:rgba(11,15,26,0.98);
+  border-top:1px solid var(--border);
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--text2);text-decoration:none;padding:.6rem 0;border-bottom:1px solid var(--border);font-size:.9rem}
+
+/* HERO */
+#hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:6rem 2rem 4rem;
+  position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,212,170,0.12) 0%, transparent 70%),
+             radial-gradient(ellipse 60% 40% at 80% 100%, rgba(59,130,246,0.08) 0%, transparent 60%);
+}
+.grid-overlay{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+.hero-content{position:relative;z-index:1;max-width:800px;}
+.hero-badge{
+  display:inline-block;
+  background:rgba(0,212,170,0.12);border:1px solid rgba(0,212,170,0.3);
+  color:var(--green);padding:.4rem 1.2rem;border-radius:50px;
+  font-size:.8rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;
+  margin-bottom:1.5rem;
+}
+.hero-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.2rem,6vw,4.5rem);
+  line-height:1.15;font-weight:900;
+  margin-bottom:1.2rem;
+}
+.hero-title em{color:var(--green);font-style:normal}
+.hero-sub{
+  font-size:1.1rem;color:var(--text2);max-width:550px;margin:0 auto 2.5rem;line-height:1.7;
+}
+.hero-stats{
+  display:flex;gap:2.5rem;justify-content:center;flex-wrap:wrap;
+  margin-bottom:3rem;
+}
+.hero-stat{text-align:center}
+.hero-stat .num{
+  font-size:2rem;font-weight:800;color:var(--green);display:block;
+  font-family:'Playfair Display',serif;
+}
+.hero-stat .lbl{font-size:.78rem;color:var(--text3);text-transform:uppercase;letter-spacing:.1em}
+.cta-group{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-primary{
+  background:var(--green);color:#0b0f1a;
+  padding:.85rem 2rem;border-radius:8px;font-weight:700;
+  text-decoration:none;font-size:.95rem;transition:.25s;
+  box-shadow:0 4px 20px rgba(0,212,170,0.3);
+}
+.btn-primary:hover{background:#00b894;transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,212,170,0.4)}
+.btn-outline{
+  border:1px solid rgba(255,255,255,0.2);color:var(--text);
+  padding:.85rem 2rem;border-radius:8px;font-weight:500;
+  text-decoration:none;font-size:.95rem;transition:.25s;
+}
+.btn-outline:hover{border-color:var(--green);color:var(--green);transform:translateY(-2px)}
+
+/* SECTIONS */
+section{padding:5rem 2rem;max-width:1400px;margin:0 auto}
+.section-header{margin-bottom:3rem}
+.section-tag{
+  display:inline-block;
+  color:var(--green);font-size:.78rem;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;margin-bottom:.6rem;
+}
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;
+  line-height:1.25;
+}
+.section-title em{color:var(--green);font-style:normal}
+.section-desc{color:var(--text2);margin-top:.75rem;max-width:600px;font-size:.97rem}
+
+/* KNOWLEDGE CARDS */
+.knowledge-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem;
+}
+.know-card{
+  background:var(--card);border:1px solid var(--border);border-radius:14px;
+  overflow:hidden;cursor:pointer;transition:.3s;
+}
+.know-card:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:var(--glow)}
+.know-card-header{
+  padding:1.4rem 1.6rem;display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid transparent;transition:.3s;
+}
+.know-card.open .know-card-header{border-color:var(--border)}
+.know-card-icon{
+  width:40px;height:40px;border-radius:10px;
+  background:rgba(0,212,170,0.1);display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;flex-shrink:0;
+}
+.know-card-title{font-weight:600;font-size:.97rem;margin-left:.9rem;flex:1}
+.know-toggle{
+  width:28px;height:28px;border-radius:6px;border:1px solid var(--border);
+  background:none;color:var(--text2);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:.3s;font-size:.9rem;
+}
+.know-card.open .know-toggle{background:rgba(0,212,170,0.1);color:var(--green);border-color:var(--border2);transform:rotate(45deg)}
+.know-card-body{
+  max-height:0;overflow:hidden;transition:max-height .35s ease;
+}
+.know-card.open .know-card-body{max-height:400px}
+.know-card-body-inner{padding:1.2rem 1.6rem 1.5rem;color:var(--text2);font-size:.9rem;line-height:1.75}
+.know-card-body-inner strong{color:var(--green)}
+.know-card-body-inner .tag{
+  display:inline-block;background:rgba(0,212,170,0.1);color:var(--green);
+  padding:.2rem .6rem;border-radius:4px;font-size:.78rem;margin:.2rem .1rem;font-weight:600;
+}
+.know-card-body-inner .tag.red{background:rgba(244,63,94,0.1);color:var(--red)}
+.know-card-body-inner .tag.gold{background:rgba(245,158,11,0.1);color:var(--gold)}
+
+/* DICTIONARY */
+#dict-section{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:5rem 0}
+#dict-section .inner{max-width:1400px;margin:0 auto;padding:0 2rem}
+.dict-search-wrap{margin-bottom:2rem;position:relative}
+.dict-search-wrap input{
+  width:100%;padding:1rem 1rem 1rem 3rem;
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+  color:var(--text);font-family:'Be Vietnam Pro',sans-serif;font-size:1rem;
+  outline:none;transition:.25s;
+}
+.dict-search-wrap input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(0,212,170,0.1)}
+.dict-search-wrap::before{
+  content:"🔍";position:absolute;left:1rem;top:50%;transform:translateY(-50%);font-size:.9rem;
+}
+.dict-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;
+}
+.dict-item{
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:1.1rem 1.3rem;transition:.2s;
+}
+.dict-item:hover{border-color:var(--border2)}
+.dict-item-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem}
+.dict-name{font-weight:700;font-size:.97rem}
+.dict-abbr{
+  background:rgba(0,212,170,0.1);color:var(--green);
+  padding:.15rem .5rem;border-radius:4px;font-size:.75rem;font-weight:700;
+}
+.dict-def{color:var(--text2);font-size:.84rem;line-height:1.6}
+.dict-hidden{display:none}
+.dict-count{color:var(--text3);font-size:.85rem;margin-bottom:1rem}
+
+/* TOOLS */
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:2rem}
+.tool-card{
+  background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;
+}
+.tool-header{
+  padding:1.4rem 1.6rem;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:1rem;
+}
+.tool-icon{
+  width:44px;height:44px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;font-size:1.3rem;
+  background:linear-gradient(135deg,rgba(0,212,170,0.2),rgba(0,212,170,0.05));
+}
+.tool-title{font-weight:700;font-size:1rem}
+.tool-sub{color:var(--text3);font-size:.8rem}
+.tool-body{padding:1.5rem}
+.field-group{margin-bottom:1rem}
+.field-label{
+  display:block;font-size:.82rem;font-weight:600;color:var(--text2);
+  margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.05em;
+}
+.field-input{
+  width:100%;padding:.75rem 1rem;
+  background:var(--bg3);border:1px solid var(--border);border-radius:8px;
+  color:var(--text);font-family:'Be Vietnam Pro',sans-serif;font-size:.95rem;
+  outline:none;transition:.2s;
+}
+.field-input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(0,212,170,0.1)}
+select.field-input{cursor:pointer}
+.calc-btn{
+  width:100%;padding:.85rem;border-radius:8px;border:none;
+  background:var(--green);color:#0b0f1a;font-family:'Be Vietnam Pro',sans-serif;
+  font-size:.95rem;font-weight:700;cursor:pointer;transition:.25s;margin-top:.5rem;
+}
+.calc-btn:hover{background:#00b894;transform:translateY(-1px)}
+.result-box{
+  margin-top:1.2rem;padding:1.2rem;border-radius:10px;
+  background:rgba(0,212,170,0.05);border:1px solid rgba(0,212,170,0.15);
+  display:none;
+}
+.result-box.show{display:block}
+.result-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem}
+.result-row:last-child{margin-bottom:0;padding-top:.5rem;border-top:1px solid rgba(255,255,255,0.06)}
+.result-label{color:var(--text2);font-size:.85rem}
+.result-val{font-weight:700;font-size:.95rem;color:var(--green)}
+.result-val.red{color:var(--red)}
+.result-val.gold{color:var(--gold)}
+.result-note{font-size:.78rem;color:var(--text3);margin-top:.8rem;line-height:1.5;padding-top:.5rem;border-top:1px solid var(--border)}
+.dca-table{width:100%;margin-top:.8rem;border-collapse:collapse;font-size:.82rem}
+.dca-table th{padding:.5rem .7rem;text-align:left;color:var(--text3);font-weight:600;border-bottom:1px solid var(--border)}
+.dca-table td{padding:.45rem .7rem;border-bottom:1px solid rgba(255,255,255,0.04);color:var(--text2)}
+.dca-table tr:last-child td{color:var(--green);font-weight:700;border-bottom:none}
+
+/* CANDLESTICK */
+#chart-wrap{
+  background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:1.5rem;overflow:hidden;
+}
+.chart-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem;flex-wrap:wrap;gap:1rem}
+.chart-legend{display:flex;gap:1.5rem;flex-wrap:wrap}
+.legend-item{display:flex;align-items:center;gap:.4rem;font-size:.82rem;color:var(--text2)}
+.legend-dot{width:12px;height:12px;border-radius:2px}
+.chart-container{position:relative;overflow:hidden;border-radius:8px}
+#candleCanvas{display:block;width:100%;cursor:crosshair}
+.candle-tooltip{
+  position:absolute;background:rgba(13,18,30,0.95);border:1px solid var(--border2);
+  border-radius:8px;padding:.7rem 1rem;font-size:.8rem;pointer-events:none;
+  opacity:0;transition:opacity .15s;z-index:10;
+}
+.candle-tooltip .tt-row{display:flex;justify-content:space-between;gap:1.5rem;margin-bottom:.2rem}
+.candle-tooltip .tt-label{color:var(--text3)}
+.candle-tooltip .tt-val{font-weight:600;color:var(--text)}
+
+/* STRATEGIES */
+.strategy-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.5rem}
+.strat-card{
+  border-radius:14px;padding:1.6rem;border:1px solid var(--border);
+  background:var(--card);transition:.3s;position:relative;overflow:hidden;
+}
+.strat-card::before{
+  content:'';position:absolute;inset:0;opacity:0;transition:.3s;
+  background:radial-gradient(ellipse at top left,rgba(0,212,170,0.08),transparent 60%);
+}
+.strat-card:hover{border-color:var(--border2);transform:translateY(-4px);box-shadow:var(--glow)}
+.strat-card:hover::before{opacity:1}
+.strat-icon{font-size:2rem;margin-bottom:.9rem;display:block}
+.strat-name{font-weight:700;font-size:1.05rem;margin-bottom:.4rem}
+.strat-desc{color:var(--text2);font-size:.84rem;line-height:1.65;margin-bottom:1rem}
+.strat-meta{display:flex;flex-wrap:wrap;gap:.4rem}
+.meta-tag{
+  font-size:.73rem;padding:.25rem .65rem;border-radius:50px;font-weight:600;
+}
+.meta-risk-low{background:rgba(0,212,170,0.12);color:var(--green)}
+.meta-risk-mid{background:rgba(245,158,11,0.12);color:var(--gold)}
+.meta-risk-high{background:rgba(244,63,94,0.12);color:var(--red)}
+.meta-time{background:rgba(59,130,246,0.12);color:var(--blue)}
+.meta-who{background:rgba(255,255,255,0.06);color:var(--text2)}
+
+/* BROKERS */
+.broker-table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border)}
+.broker-table{width:100%;border-collapse:collapse;font-size:.88rem}
+.broker-table th{
+  padding:1rem 1.2rem;text-align:left;background:var(--bg3);
+  color:var(--text2);font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  border-bottom:1px solid var(--border);
+}
+.broker-table td{
+  padding:.9rem 1.2rem;border-bottom:1px solid var(--border);
+  vertical-align:middle;
+}
+.broker-table tr:last-child td{border-bottom:none}
+.broker-table tr:hover td{background:rgba(255,255,255,0.02)}
+.broker-name{font-weight:700;color:var(--text)}
+.broker-badge{
+  display:inline-block;padding:.2rem .6rem;border-radius:4px;font-size:.73rem;font-weight:700;
+}
+.badge-green{background:rgba(0,212,170,0.12);color:var(--green)}
+.badge-gold{background:rgba(245,158,11,0.12);color:var(--gold)}
+.badge-blue{background:rgba(59,130,246,0.12);color:var(--blue)}
+.badge-red{background:rgba(244,63,94,0.12);color:var(--red)}
+.star{color:var(--gold)}
+
+/* CHECKLIST */
+.checklist-wrap{max-width:700px}
+.check-item{
+  display:flex;align-items:flex-start;gap:1rem;padding:1.1rem 1.3rem;
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+  margin-bottom:.8rem;cursor:pointer;transition:.25s;
+}
+.check-item:hover{border-color:var(--border2)}
+.check-item.checked{border-color:rgba(0,212,170,0.3);background:rgba(0,212,170,0.04)}
+.check-box{
+  width:22px;height:22px;border-radius:6px;border:2px solid var(--text3);
+  flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  transition:.25s;margin-top:.1rem;
+}
+.check-item.checked .check-box{background:var(--green);border-color:var(--green);color:#0b0f1a}
+.check-text{font-size:.95rem;line-height:1.5}
+.check-item.checked .check-text{text-decoration:line-through;color:var(--text2)}
+.check-desc{font-size:.8rem;color:var(--text3);margin-top:.2rem}
+.progress-bar-wrap{
+  background:var(--bg3);border-radius:50px;height:8px;margin-bottom:2rem;
+  border:1px solid var(--border);overflow:hidden;
+}
+.progress-bar-fill{
+  height:100%;background:linear-gradient(90deg,var(--green),#00b894);
+  border-radius:50px;transition:.4s;
+}
+.progress-label{color:var(--text2);font-size:.85rem;margin-bottom:.5rem}
+
+/* FOOTER */
+footer{
+  background:var(--bg2);border-top:1px solid var(--border);
+  padding:3rem 2rem;text-align:center;
+}
+.footer-inner{max-width:1000px;margin:0 auto}
+.footer-logo{
+  font-family:'Playfair Display',serif;font-size:1.5rem;
+  color:var(--green);font-weight:700;margin-bottom:.8rem;
+}
+.footer-warn{
+  background:rgba(244,63,94,0.08);border:1px solid rgba(244,63,94,0.2);
+  border-radius:8px;padding:1rem 1.5rem;margin:1.2rem auto;max-width:700px;
+  font-size:.85rem;color:var(--text2);line-height:1.65;
+}
+.footer-warn strong{color:var(--red)}
+.footer-links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin:1.2rem 0}
+.footer-links a{
+  color:var(--green);text-decoration:none;font-size:.85rem;
+  padding:.3rem .7rem;border:1px solid rgba(0,212,170,0.2);border-radius:4px;
+  transition:.2s;
+}
+.footer-links a:hover{background:rgba(0,212,170,0.1)}
+.footer-copy{color:var(--text3);font-size:.8rem;margin-top:.8rem}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(30px);transition:.6s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav-links{display:none}
+  .menu-btn{display:block}
+  .tools-grid{grid-template-columns:1fr}
+  .strategy-grid{grid-template-columns:1fr}
+  .hero-stats{gap:1.5rem}
+  section{padding:3.5rem 1.2rem}
+  #dict-section .inner{padding:0 1.2rem}
+  .knowledge-grid{grid-template-columns:1fr}
+  .dict-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .nav-inner{padding:.8rem 1.2rem}
+  .hero-title{font-size:1.9rem}
+  .cta-group{flex-direction:column;align-items:center}
+  .broker-table th,.broker-table td{padding:.7rem .8rem}
+}
+
+/* TICKER */
+.ticker-bar{
+  background:var(--bg2);border-bottom:1px solid var(--border);
+  overflow:hidden;padding:.5rem 0;
+}
+.ticker-inner{
+  display:flex;gap:3rem;width:max-content;
+  animation:ticker 30s linear infinite;
+}
+.ticker-item{display:flex;align-items:center;gap:.4rem;font-size:.8rem;white-space:nowrap}
+.ticker-sym{font-weight:700;color:var(--text)}
+.ticker-val{color:var(--green)}
+.ticker-chg{color:var(--green);font-size:.75rem}
+.ticker-chg.dn{color:var(--red)}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">📈 CK101 <span>Học Đầu Tư Từ Số 0</span></a>
+    <ul class="nav-links">
+      <li><a href="#kien-thuc">Kiến Thức</a></li>
+      <li><a href="#dict-section">Thuật Ngữ</a></li>
+      <li><a href="#cong-cu">Công Cụ</a></li>
+      <li><a href="#chien-luoc">Chiến Lược</a></li>
+      <li><a href="#san-giao-dich">Sàn Giao Dịch</a></li>
+    </ul>
+    <button class="menu-btn" id="menuBtn">☰</button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#kien-thuc" onclick="closeMobile()">Kiến Thức</a>
+    <a href="#dict-section" onclick="closeMobile()">Thuật Ngữ</a>
+    <a href="#cong-cu" onclick="closeMobile()">Công Cụ</a>
+    <a href="#chien-luoc" onclick="closeMobile()">Chiến Lược</a>
+    <a href="#san-giao-dich" onclick="closeMobile()">Sàn Giao Dịch</a>
+  </div>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker-bar" style="margin-top:60px">
+  <div class="ticker-inner" id="tickerInner"></div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="grid-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🎓 Dành cho người mới bắt đầu</div>
+    <h1 class="hero-title">Chứng Khoán 101<br><em>Học Đầu Tư Từ Số 0</em></h1>
+    <p class="hero-sub">Hướng dẫn toàn diện về thị trường chứng khoán Việt Nam — từ khái niệm cơ bản đến công cụ tính toán thực tế, hoàn toàn miễn phí.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="num">7</span><span class="lbl">Bài học cơ bản</span></div>
+      <div class="hero-stat"><span class="num">30+</span><span class="lbl">Thuật ngữ</span></div>
+      <div class="hero-stat"><span class="num">4</span><span class="lbl">Công cụ tính toán</span></div>
+      <div class="hero-stat"><span class="num">5</span><span class="lbl">Chiến lược đầu tư</span></div>
+    </div>
+    <div class="cta-group">
+      <a href="#kien-thuc" class="btn-primary">Bắt Đầu Học Ngay →</a>
+      <a href="#cong-cu" class="btn-outline">Thử Công Cụ Tính Toán</a>
+    </div>
+  </div>
+</section>
+
+<!-- KNOWLEDGE -->
+<section id="kien-thuc">
+  <div class="section-header reveal">
+    <div class="section-tag">📚 Bài học cơ bản</div>
+    <h2 class="section-title">Kiến Thức <em>Nền Tảng</em></h2>
+    <p class="section-desc">Nhấn vào từng thẻ để mở rộng và đọc giải thích chi tiết, dễ hiểu.</p>
+  </div>
+  <div class="knowledge-grid" id="knowGrid"></div>
+</section>
+
+<!-- DICTIONARY -->
+<div id="dict-section">
+  <div class="inner">
+    <div class="section-header reveal">
+      <div class="section-tag">📖 Từ điển</div>
+      <h2 class="section-title">Thuật Ngữ <em>Chứng Khoán</em></h2>
+      <p class="section-desc">Tìm kiếm và tra cứu các thuật ngữ thường gặp trên thị trường.</p>
+    </div>
+    <div class="dict-search-wrap reveal">
+      <input type="text" id="dictSearch" placeholder="Tìm thuật ngữ... (VD: P/E, cổ tức, margin...)" autocomplete="off">
+    </div>
+    <div class="dict-count reveal" id="dictCount"></div>
+    <div class="dict-grid" id="dictGrid"></div>
+  </div>
+</div>
+
+<!-- TOOLS -->
+<section id="cong-cu">
+  <div class="section-header reveal">
+    <div class="section-tag">🧮 Công cụ</div>
+    <h2 class="section-title">Tính Toán <em>Thực Tế</em></h2>
+    <p class="section-desc">Tính ngay trên trang, không cần đăng ký, không cần reload.</p>
+  </div>
+  <div class="tools-grid">
+
+    <!-- TOOL 1: FEE -->
+    <div class="tool-card reveal">
+      <div class="tool-header">
+        <div class="tool-icon">💸</div>
+        <div><div class="tool-title">Tính Phí Giao Dịch</div><div class="tool-sub">Mua/Bán cổ phiếu thực tế tốn bao nhiêu?</div></div>
+      </div>
+      <div class="tool-body">
+        <div class="field-group">
+          <label class="field-label">Giá Cổ Phiếu (VNĐ/cp)</label>
+          <input class="field-input fmt-money" type="text" inputmode="numeric" id="fee_price" placeholder="VD: 25.000">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Số Lượng (cổ phiếu)</label>
+          <input class="field-input fmt-number" type="text" inputmode="numeric" id="fee_qty" placeholder="VD: 100">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Loại Lệnh</label>
+          <select class="field-input" id="fee_type">
+            <option value="buy">Mua</option>
+            <option value="sell">Bán</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Phí Môi Giới (%)</label>
+          <select class="field-input" id="fee_rate">
+            <option value="0.15">0.15% (thấp — SSI, MBS)</option>
+            <option value="0.20" selected>0.20% (trung bình)</option>
+            <option value="0.25">0.25% (cao — TCBS cũ)</option>
+          </select>
+        </div>
+        <button class="calc-btn" onclick="calcFee()">Tính Phí →</button>
+        <div class="result-box" id="fee_result"></div>
+      </div>
+    </div>
+
+    <!-- TOOL 2: PNL -->
+    <div class="tool-card reveal">
+      <div class="tool-header">
+        <div class="tool-icon">📊</div>
+        <div><div class="tool-title">Tính Lãi / Lỗ Đầu Tư</div><div class="tool-sub">Đầu tư sinh lời bao nhiêu phần trăm?</div></div>
+      </div>
+      <div class="tool-body">
+        <div class="field-group">
+          <label class="field-label">Giá Mua (VNĐ/cp)</label>
+          <input class="field-input fmt-money" type="text" inputmode="numeric" id="pnl_buy" placeholder="VD: 20.000">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Giá Bán / Hiện Tại (VNĐ/cp)</label>
+          <input class="field-input fmt-money" type="text" inputmode="numeric" id="pnl_sell" placeholder="VD: 26.000">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Số Lượng (cổ phiếu)</label>
+          <input class="field-input fmt-number" type="text" inputmode="numeric" id="pnl_qty" placeholder="VD: 500">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Cổ Tức Đã Nhận (VNĐ tổng)</label>
+          <input class="field-input fmt-money" type="text" inputmode="numeric" id="pnl_div" placeholder="VD: 500.000 (để 0 nếu chưa có)">
+        </div>
+        <button class="calc-btn" onclick="calcPnL()">Tính Lãi/Lỗ →</button>
+        <div class="result-box" id="pnl_result"></div>
+      </div>
+    </div>
+
+    <!-- TOOL 3: DCA -->
+    <div class="tool-card reveal">
+      <div class="tool-header">
+        <div class="tool-icon">📅</div>
+        <div><div class="tool-title">Mô Phỏng DCA</div><div class="tool-sub">Tích lũy đều đặn hàng tháng</div></div>
+      </div>
+      <div class="tool-body">
+        <div class="field-group">
+          <label class="field-label">Số Tiền Đầu Tư/Tháng (VNĐ)</label>
+          <input class="field-input fmt-money" type="text" inputmode="numeric" id="dca_monthly" placeholder="VD: 2.000.000">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Số Tháng</label>
+          <input class="field-input fmt-number" type="text" inputmode="numeric" id="dca_months" placeholder="VD: 12">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Giá Cổ Phiếu TB Ước Tính (VNĐ/cp)</label>
+          <input class="field-input fmt-money" type="text" inputmode="numeric" id="dca_price" placeholder="VD: 25.000">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Mức Tăng Giá TB/Tháng (%)</label>
+          <input class="field-input fmt-decimal" type="text" inputmode="decimal" id="dca_growth" placeholder="VD: 1 (nghĩa là +1%/tháng)">
+        </div>
+        <button class="calc-btn" onclick="calcDCA()">Mô Phỏng →</button>
+        <div class="result-box" id="dca_result"></div>
+      </div>
+    </div>
+
+    <!-- TOOL 4: PE -->
+    <div class="tool-card reveal">
+      <div class="tool-header">
+        <div class="tool-icon">🔢</div>
+        <div><div class="tool-title">Tính Chỉ Số P/E</div><div class="tool-sub">Cổ phiếu đắt hay rẻ so với lợi nhuận?</div></div>
+      </div>
+      <div class="tool-body">
+        <div class="field-group">
+          <label class="field-label">Giá Cổ Phiếu Hiện Tại (VNĐ/cp)</label>
+          <input class="field-input fmt-money" type="text" inputmode="numeric" id="pe_price" placeholder="VD: 30.000">
+        </div>
+        <div class="field-group">
+          <label class="field-label">EPS — Thu Nhập/Cổ Phiếu (VNĐ/cp/năm)</label>
+          <input class="field-input fmt-money" type="text" inputmode="numeric" id="pe_eps" placeholder="VD: 2.000">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Ngành</label>
+          <select class="field-input" id="pe_sector">
+            <option value="bank">Ngân hàng (P/E TB: 8–12)</option>
+            <option value="real">Bất động sản (P/E TB: 10–15)</option>
+            <option value="retail">Bán lẻ / Tiêu dùng (P/E TB: 15–20)</option>
+            <option value="tech">Công nghệ (P/E TB: 15–25)</option>
+            <option value="gen" selected>Thị trường chung (P/E TB: 12–16)</option>
+          </select>
+        </div>
+        <button class="calc-btn" onclick="calcPE()">Tính P/E →</button>
+        <div class="result-box" id="pe_result"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CANDLESTICK -->
+<section id="bieu-do">
+  <div class="section-header reveal">
+    <div class="section-tag">📉 Biểu đồ nến</div>
+    <h2 class="section-title">Đọc Biểu Đồ <em>Candlestick</em></h2>
+    <p class="section-desc">Di chuột vào từng cây nến để xem thông tin chi tiết. Nến xanh = tăng giá, Nến đỏ = giảm giá.</p>
+  </div>
+  <div id="chart-wrap" class="reveal">
+    <div class="chart-header">
+      <div>
+        <div style="font-weight:700;font-size:1rem">Mã Mẫu: VNM — Biểu Đồ Nến 15 Phiên</div>
+        <div style="color:var(--text3);font-size:.8rem;margin-top:.2rem">Dữ liệu mô phỏng cho mục đích học tập</div>
+      </div>
+      <div class="chart-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div>Nến tăng</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div>Nến giảm</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--text3);width:2px;height:12px"></div>Bóng nến</div>
+      </div>
+    </div>
+    <div class="chart-container">
+      <canvas id="candleCanvas" height="300"></canvas>
+      <div class="candle-tooltip" id="candleTooltip"></div>
+    </div>
+    <div style="margin-top:1rem;display:flex;gap:2rem;flex-wrap:wrap">
+      <div style="font-size:.82rem;color:var(--text2)"><strong style="color:var(--green)">Thân nến:</strong> khoảng giữa giá Mở và giá Đóng cửa</div>
+      <div style="font-size:.82rem;color:var(--text2)"><strong style="color:var(--green)">Bóng trên:</strong> giá cao nhất trong phiên</div>
+      <div style="font-size:.82rem;color:var(--text2)"><strong style="color:var(--red)">Bóng dưới:</strong> giá thấp nhất trong phiên</div>
+    </div>
+  </div>
+</section>
+
+<!-- STRATEGIES -->
+<section id="chien-luoc" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);max-width:100%;padding:5rem 2rem">
+  <div style="max-width:1400px;margin:0 auto">
+    <div class="section-header reveal">
+      <div class="section-tag">🧭 Chiến lược</div>
+      <h2 class="section-title">Các Phong Cách <em>Đầu Tư</em></h2>
+      <p class="section-desc">Mỗi chiến lược phù hợp với một nhóm nhà đầu tư khác nhau. Chọn đúng phong cách giúp bạn bền vững hơn.</p>
+    </div>
+    <div class="strategy-grid" id="stratGrid"></div>
+  </div>
+</section>
+
+<!-- BROKERS -->
+<section id="san-giao-dich">
+  <div class="section-header reveal">
+    <div class="section-tag">🏢 Sàn giao dịch</div>
+    <h2 class="section-title">So Sánh Công Ty <em>Chứng Khoán</em></h2>
+    <p class="section-desc">Các công ty chứng khoán lớn tại Việt Nam và đặc điểm nổi bật của từng đơn vị.</p>
+  </div>
+  <div class="broker-table-wrap reveal">
+    <table class="broker-table" id="brokerTable"></table>
+  </div>
+</section>
+
+<!-- CHECKLIST -->
+<section id="checklist" style="background:var(--bg2);border-top:1px solid var(--border);max-width:100%;padding:5rem 2rem">
+  <div style="max-width:1400px;margin:0 auto">
+    <div class="section-header reveal">
+      <div class="section-tag">✅ Lộ trình</div>
+      <h2 class="section-title">Checklist <em>Người Mới</em></h2>
+      <p class="section-desc">Đánh dấu các bước bạn đã hoàn thành. Tiến trình được lưu tự động.</p>
+    </div>
+    <div class="reveal">
+      <div class="progress-label" id="progressLabel"></div>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressFill"></div></div>
+    </div>
+    <div class="checklist-wrap" id="checklistWrap"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">📈 Chứng Khoán 101</div>
+    <p style="color:var(--text2);font-size:.9rem">Nền tảng học đầu tư miễn phí dành cho người Việt</p>
+    <div class="footer-warn">
+      <strong>⚠️ Lưu ý pháp lý quan trọng:</strong> Toàn bộ nội dung trên trang này mang tính chất <strong>giáo dục</strong> và <strong>thông tin</strong>. Đây <strong>không phải tư vấn đầu tư</strong>. Mọi quyết định đầu tư đều tiềm ẩn rủi ro. Bạn có thể mất một phần hoặc toàn bộ vốn đầu tư. Hãy tham khảo chuyên gia tài chính có giấy phép trước khi đưa ra quyết định đầu tư.
+    </div>
+    <div class="footer-links">
+      <a href="https://cafef.vn" target="_blank" rel="noopener">cafef.vn</a>
+      <a href="https://vietstock.vn" target="_blank" rel="noopener">vietstock.vn</a>
+      <a href="https://hsx.vn" target="_blank" rel="noopener">hsx.vn (HOSE)</a>
+      <a href="https://hnx.vn" target="_blank" rel="noopener">hnx.vn (HNX)</a>
+    </div>
+    <div class="footer-copy">© 2025 Chứng Khoán 101 — Dùng cho mục đích giáo dục</div>
+  </div>
+</footer>
+
+<script>
+// ===================== DATA =====================
+
+const KNOWLEDGE = [
+  {
+    icon:'🏦', title:'Chứng Khoán Là Gì? Cổ Phiếu vs Trái Phiếu vs Chứng Chỉ Quỹ',
+    body:`<strong>Chứng khoán</strong> là các tài sản tài chính có thể mua bán được, gồm 3 loại chính:<br><br>
+    <span class="tag">Cổ phiếu (Stock)</span> Bạn mua 1 phần sở hữu của công ty. Hưởng lợi khi công ty lãi, chịu rủi ro khi công ty lỗ. Biến động mạnh hơn.<br><br>
+    <span class="tag gold">Trái phiếu (Bond)</span> Bạn cho công ty/nhà nước vay tiền với lãi suất cố định. Ổn định hơn cổ phiếu nhưng sinh lời thấp hơn.<br><br>
+    <span class="tag red">Chứng chỉ quỹ (ETF/Fund)</span> Bạn mua một rổ nhiều cổ phiếu cùng lúc qua quỹ. Phù hợp người muốn đa dạng hóa mà không cần tự chọn cổ phiếu.`
+  },
+  {
+    icon:'🏛️', title:'Sàn HOSE, HNX, UPCoM Khác Nhau Thế Nào?',
+    body:`Ba sàn chứng khoán tại Việt Nam:<br><br>
+    <span class="tag">HOSE</span> (HCM Stock Exchange) — Sở Giao dịch Chứng khoán TP.HCM. Các công ty lớn nhất, thanh khoản cao nhất. VN-Index theo dõi sàn này. Biên độ dao động ±7%/ngày.<br><br>
+    <span class="tag gold">HNX</span> (Hà Nội Stock Exchange) — Sở Giao dịch Hà Nội. Công ty vừa và nhỏ hơn. Biên độ ±10%/ngày. Có trái phiếu chính phủ.<br><br>
+    <span class="tag red">UPCoM</span> Thị trường chưa niêm yết. Công ty mới, tiêu chuẩn thấp hơn. Biên độ ±15%/ngày. Rủi ro cao hơn, cần thẩm định kỹ.`
+  },
+  {
+    icon:'📋', title:'Lệnh MP (Thị Trường) vs Lệnh LO (Giới Hạn)',
+    body:`<span class="tag">Lệnh MP (Market Order)</span> Mua/bán ngay lập tức theo giá thị trường tốt nhất hiện tại. Ưu điểm: khớp lệnh chắc chắn. Nhược điểm: không kiểm soát được giá.<br><br>
+    <strong>Ví dụ:</strong> VNM đang giao dịch ở 75,000đ. Đặt lệnh MP mua → khớp ngay ở ~75,000đ (hoặc giá bán thấp nhất có sẵn).<br><br>
+    <span class="tag gold">Lệnh LO (Limit Order)</span> Bạn đặt mức giá tối đa muốn mua (hoặc tối thiểu muốn bán). Chỉ khớp khi thị trường đạt giá đó.<br><br>
+    <strong>Ví dụ:</strong> VNM đang ở 75,000đ. Bạn chỉ muốn mua ở 73,000đ → đặt LO mua giá 73,000đ. Nếu giá không xuống đó, lệnh không khớp.`
+  },
+  {
+    icon:'⏰', title:'Phiên ATO, ATC và Liên Tục Là Gì?',
+    body:`Một phiên giao dịch trên HOSE chia thành các giai đoạn:<br><br>
+    <span class="tag">ATO</span> (At-The-Open) 9:00–9:15: Khớp lệnh mở cửa. Tất cả lệnh được gom lại và khớp tại một mức giá duy nhất nhằm xác định giá mở cửa. Chỉ dùng lệnh LO và ATO.<br><br>
+    <span class="tag">Liên Tục</span> 9:15–11:30 và 13:00–14:30: Lệnh khớp liên tục từng lúc theo giá tốt nhất. Có thể dùng LO và MP.<br><br>
+    <span class="tag gold">ATC</span> (At-The-Close) 14:30–14:45: Khớp lệnh đóng cửa. Xác định giá đóng cửa chính thức của ngày. Chỉ dùng LO và ATC.`
+  },
+  {
+    icon:'⚖️', title:'Khớp Lệnh Hoạt Động Như Thế Nào?',
+    body:`<strong>Nguyên tắc khớp lệnh:</strong><br><br>
+    1. <strong>Ưu tiên giá</strong>: Lệnh mua giá cao hơn được khớp trước. Lệnh bán giá thấp hơn được khớp trước.<br><br>
+    2. <strong>Ưu tiên thời gian</strong>: Cùng giá thì lệnh đặt trước khớp trước (first in, first out).<br><br>
+    3. <strong>Khớp khi</strong>: Giá mua tốt nhất ≥ Giá bán tốt nhất → khớp tại giá thấp nhất trong hai bên.<br><br>
+    <strong>Ví dụ:</strong> Giá mua cao nhất: 25,200đ / Giá bán thấp nhất: 25,200đ → Khớp tại 25,200đ.`
+  },
+  {
+    icon:'🗓️', title:'T+2 Nghĩa Là Gì?',
+    body:`<strong>T+2</strong> là chu kỳ thanh toán: sau khi mua (T=0), tiền và cổ phiếu thực sự về tài khoản sau <strong>2 ngày làm việc</strong>.<br><br>
+    <span class="tag">Ví dụ thực tế:</span> Mua VNM hôm nay (Thứ 2) → Cổ phiếu thực sự về tài khoản sáng Thứ 4.<br><br>
+    <strong>Ý nghĩa quan trọng:</strong><br>
+    • Tiền mua bị "đóng băng" ngay khi đặt lệnh.<br>
+    • Cổ phiếu mua hôm nay chỉ bán được từ ngày T+3 (Thứ 5).<br>
+    • Nhận cổ tức phải nắm giữ cổ phiếu TRƯỚC ngày chốt danh sách ít nhất T+2.<br><br>
+    <span class="tag red">Lưu ý:</span> Một số CTCK có dịch vụ ứng trước tiền bán T0 (tức là bán hôm nay, nhận tiền ngay) với phí nhỏ.`
+  },
+  {
+    icon:'⚠️', title:'Margin Là Gì và Rủi Ro Ra Sao?',
+    body:`<strong>Margin</strong> là hình thức vay tiền từ công ty chứng khoán để mua thêm cổ phiếu vượt số vốn bạn có.<br><br>
+    <span class="tag gold">Cách hoạt động:</span> Bạn có 100 triệu, vay thêm 100 triệu (tỷ lệ 1:1). Tổng sức mua 200 triệu.<br><br>
+    <strong>Khi thắng:</strong> Lợi nhuận x2. Nếu cổ phiếu tăng 20% → bạn lãi 40% trên vốn thực.<br><br>
+    <span class="tag red">Khi thua:</span> Thua lỗ cũng x2. Cổ phiếu giảm 20% → bạn lỗ 40% vốn thực.<br><br>
+    <strong>Rủi ro đặc biệt — Call Margin:</strong> Khi tài sản ròng xuống dưới mức tối thiểu, CTCK sẽ bắt buộc bán cổ phiếu của bạn (force-sell) dù bạn không muốn. <strong>Không khuyến nghị cho người mới.</strong>`
+  }
+];
+
+const GLOSSARY = [
+  {name:'P/E (Price-to-Earnings)',abbr:'P/E',def:'Tỷ lệ Giá/Lợi nhuận. Cho biết nhà đầu tư trả bao nhiêu đồng cho mỗi 1 đồng lợi nhuận của công ty. P/E càng thấp, cổ phiếu có thể càng rẻ.'},
+  {name:'EPS (Earnings Per Share)',abbr:'EPS',def:'Thu nhập trên mỗi cổ phiếu. EPS = Lợi nhuận ròng / Tổng số cổ phiếu lưu hành. EPS cao = công ty làm ăn tốt.'},
+  {name:'ROE (Return on Equity)',abbr:'ROE',def:'Lợi nhuận trên vốn chủ sở hữu. Đo hiệu quả sử dụng vốn. ROE >15% thường được đánh giá tốt.'},
+  {name:'KLGD (Khối Lượng Giao Dịch)',abbr:'KLGD',def:'Tổng số cổ phiếu được mua bán trong một phiên. KLGD cao = thanh khoản tốt = dễ mua/bán.'},
+  {name:'Giá Trần',abbr:'TRẦN',def:'Mức giá cao nhất cổ phiếu được phép tăng trong ngày. HOSE: +7%, HNX: +10%, UPCoM: +15%.'},
+  {name:'Giá Sàn',abbr:'SÀN',def:'Mức giá thấp nhất cổ phiếu được phép giảm trong ngày. Đối xứng với giá trần.'},
+  {name:'Room Ngoại',abbr:'ROOM',def:'Giới hạn tỷ lệ sở hữu tối đa của nhà đầu tư nước ngoài trong một công ty. Thường là 49% hoặc 30% tùy ngành.'},
+  {name:'Cổ Tức',abbr:'DIV',def:'Khoản tiền hoặc cổ phiếu mà công ty chia cho cổ đông từ lợi nhuận. Cổ tức tiền mặt: nhận tiền. Cổ tức bằng cổ phiếu: nhận thêm cổ phiếu.'},
+  {name:'Quyền Mua (Rights)',abbr:'QM',def:'Quyền ưu tiên cho cổ đông hiện hữu mua thêm cổ phiếu mới với giá ưu đãi. Thường xảy ra khi công ty phát hành thêm cổ phần.'},
+  {name:'Phát Hành Thêm',abbr:'IPO/SPO',def:'Công ty phát hành thêm cổ phiếu mới. Thường pha loãng giá trị cổ phiếu cũ nếu không đi kèm mở rộng kinh doanh.'},
+  {name:'Short Sell (Bán Khống)',abbr:'SHORT',def:'Bán cổ phiếu đi vay với hy vọng giá giảm, mua lại rẻ hơn để trả. Ở Việt Nam chưa được phép chính thức với cổ phiếu thường.'},
+  {name:'Blue-chip',abbr:'BLUE',def:'Cổ phiếu của các công ty lớn, uy tín, ổn định, thanh khoản cao như VCB, VIC, VNM, FPT... Ít biến động hơn nhưng tăng chậm hơn.'},
+  {name:'Penny Stock',abbr:'PENNY',def:'Cổ phiếu có giá rất thấp (thường dưới 5.000đ). Rủi ro cao, dễ bị làm giá, thanh khoản kém. Người mới nên tránh.'},
+  {name:'VN-Index',abbr:'VNIDX',def:'Chỉ số đại diện cho toàn bộ thị trường cổ phiếu trên sàn HOSE. Tăng = thị trường đang tốt chung. Giảm = thị trường chung xuống.'},
+  {name:'Thanh Khoản',abbr:'LIQD',def:'Khả năng mua/bán cổ phiếu dễ dàng mà không làm giá biến động nhiều. Thanh khoản cao = an toàn hơn.'},
+  {name:'NAV (Net Asset Value)',abbr:'NAV',def:'Giá trị tài sản ròng của quỹ đầu tư. NAV/chứng chỉ = giá trị thực tế mỗi chứng chỉ quỹ.'},
+  {name:'PE Ratio',abbr:'P/E',def:'Xem P/E bên trên. Dùng để so sánh "độ đắt/rẻ" giữa các cổ phiếu trong cùng ngành.'},
+  {name:'P/B (Price-to-Book)',abbr:'P/B',def:'Tỷ lệ Giá/Giá trị sổ sách. P/B < 1 = cổ phiếu đang rẻ hơn tài sản ròng của công ty.'},
+  {name:'Lệnh LO',abbr:'LO',def:'Limit Order — Lệnh giới hạn giá. Chỉ khớp khi thị trường đạt đúng mức giá bạn đặt.'},
+  {name:'Lệnh MP',abbr:'MP',def:'Market Order — Lệnh thị trường. Khớp ngay với giá tốt nhất hiện tại trên thị trường.'},
+  {name:'ATO',abbr:'ATO',def:'At The Open — Lệnh khớp giá mở cửa. Dùng trong phiên đấu giá mở cửa 9:00–9:15.'},
+  {name:'ATC',abbr:'ATC',def:'At The Close — Lệnh khớp giá đóng cửa. Dùng trong phiên đấu giá đóng cửa 14:30–14:45.'},
+  {name:'T+2',abbr:'T+2',def:'Chu kỳ thanh toán: cổ phiếu và tiền về tài khoản sau 2 ngày làm việc kể từ ngày giao dịch.'},
+  {name:'Margin Call',abbr:'MCALL',def:'Yêu cầu nộp thêm ký quỹ khi tài sản ròng tài khoản margin xuống dưới mức tối thiểu. Nếu không nộp, CTCK sẽ force-sell.'},
+  {name:'Ký Quỹ',abbr:'MARGIN',def:'Số tiền tối thiểu cần có trong tài khoản khi giao dịch margin. Thường 30–50% giá trị danh mục.'},
+  {name:'Force Sell',abbr:'FS',def:'Bán bắt buộc: CTCK tự động bán cổ phiếu của bạn khi tài khoản margin xuống dưới mức tối thiểu.'},
+  {name:'BCTC (Báo Cáo Tài Chính)',abbr:'BCTC',def:'Báo cáo tài chính định kỳ (quý/năm) của công ty. Gồm: Bảng cân đối kế toán, Kết quả kinh doanh, Lưu chuyển tiền tệ.'},
+  {name:'ETF (Exchange-Traded Fund)',abbr:'ETF',def:'Quỹ hoán đổi danh mục — đầu tư rổ nhiều cổ phiếu theo một chỉ số. Phổ biến: FUEVFVND (VN30), E1VFVN30.'},
+  {name:'Lướt Sóng (Trading)',abbr:'TRADE',def:'Giao dịch ngắn hạn (T+3 đến vài tuần), mua thấp bán cao dựa trên phân tích kỹ thuật. Rủi ro cao, cần kinh nghiệm.'},
+  {name:'DCA (Dollar-Cost Averaging)',abbr:'DCA',def:'Chiến lược đầu tư đều đặn một khoản cố định mỗi tháng, bất kể giá lên hay xuống. Giảm rủi ro timing thị trường.'},
+  {name:'ROA (Return on Assets)',abbr:'ROA',def:'Lợi nhuận trên tổng tài sản. Đo hiệu quả sử dụng tài sản. ROA >5% thường được đánh giá tốt.'},
+  {name:'Phân Tích Kỹ Thuật',abbr:'TA',def:'Phân tích biểu đồ giá và khối lượng để dự đoán xu hướng giá. Dùng các chỉ báo: MA, RSI, MACD, Bollinger Bands...'}
+];
+
+const STRATEGIES = [
+  {icon:'🏗️',name:'Đầu Tư Dài Hạn (Buy & Hold)',desc:'Mua cổ phiếu tốt và giữ nhiều năm. Không quan tâm biến động ngắn hạn. Warren Buffett là huyền thoại của chiến lược này.',risk:'Thấp',riskClass:'low',time:'3–10+ năm',who:'Người bận rộn, ít thời gian theo dõi'},
+  {icon:'📅',name:'DCA — Bình Quân Giá Vốn',desc:'Đầu tư một khoản cố định hàng tháng, bất kể giá. Tự động mua nhiều hơn khi giá rẻ, ít hơn khi giá đắt. Giảm rủi ro timing.',risk:'Thấp',riskClass:'low',time:'Hàng tháng đều đặn',who:'Người mới bắt đầu, có thu nhập ổn định'},
+  {icon:'📈',name:'Lướt Sóng Ngắn Hạn',desc:'Mua bán trong vài ngày đến vài tuần dựa trên phân tích kỹ thuật và xu hướng giá. Đòi hỏi thời gian và kinh nghiệm cao.',risk:'Cao',riskClass:'high',time:'Ngày — tuần',who:'Người có kinh nghiệm, chịu được căng thẳng'},
+  {icon:'💰',name:'Đầu Tư Theo Cổ Tức',desc:'Chọn các công ty trả cổ tức đều đặn, tỷ suất cao (>5%/năm). Tạo dòng tiền thụ động ổn định. Phù hợp giai đoạn gần nghỉ hưu.',risk:'Trung bình',riskClass:'mid',time:'1–5 năm',who:'Người muốn thu nhập thụ động'},
+  {icon:'🗂️',name:'Đầu Tư Theo Chỉ Số (ETF)',desc:'Mua ETF đại diện cho VN30 hoặc VN-Index. Không cần chọn cổ phiếu đơn lẻ. Phí thấp, đa dạng hóa tự động.',risk:'Thấp–Trung',riskClass:'low',time:'3+ năm',who:'Người mới, không muốn nghiên cứu sâu'}
+];
+
+const BROKERS = [
+  {name:'SSI',fee:'0.15%',app:'iSSI ⭐⭐⭐⭐',margin:'Có',badge:'badge-green',suitable:'Nhà đầu tư chuyên nghiệp'},
+  {name:'VPS',fee:'0.1–0.15%',app:'VPS SmartOne ⭐⭐⭐⭐⭐',margin:'Có',badge:'badge-blue',suitable:'Người mới, giao diện đẹp'},
+  {name:'VNDirect (VNDS)',fee:'0.15%',app:'VNDirect ⭐⭐⭐⭐',margin:'Có',badge:'badge-green',suitable:'Đầu tư dài hạn, ETF'},
+  {name:'MBS',fee:'0.15%',app:'MBS Mobile ⭐⭐⭐',margin:'Có',badge:'badge-gold',suitable:'Người trung cấp'},
+  {name:'TCBS',fee:'0.1–0.25%',app:'TCBS ⭐⭐⭐⭐⭐',margin:'Có',badge:'badge-blue',suitable:'Người mới, giao diện thân thiện'},
+  {name:'HSC',fee:'0.15–0.2%',app:'HSC Online ⭐⭐⭐',margin:'Có',badge:'badge-gold',suitable:'Nhà đầu tư giá trị'},
+  {name:'Mirae Asset',fee:'0.15%',app:'m.Stock ⭐⭐⭐⭐',margin:'Có',badge:'badge-green',suitable:'Người có kinh nghiệm, margin nhiều'}
+];
+
+const CHECKLIST_ITEMS = [
+  {id:'c1',text:'Đọc và hiểu các thuật ngữ cơ bản',desc:'P/E, EPS, ROE, lệnh LO, ATO, T+2...'},
+  {id:'c2',text:'Mở tài khoản chứng khoán',desc:'Chọn CTCK phù hợp, hoàn tất eKYC online'},
+  {id:'c3',text:'Nạp tiền và đặt lệnh mua thử 1 cổ phiếu nhỏ',desc:'Thực hành trên ứng dụng để quen quy trình'},
+  {id:'c4',text:'Theo dõi danh mục trong 30 ngày',desc:'Quan sát biến động, đừng hoảng loạn khi giảm'},
+  {id:'c5',text:'Đọc BCTC của 1 doanh nghiệp',desc:'Xem Kết quả kinh doanh, so sánh EPS các quý'},
+  {id:'c6',text:'Tìm hiểu phân tích kỹ thuật cơ bản',desc:'Đường MA, nến Nhật, vùng hỗ trợ/kháng cự'},
+  {id:'c7',text:'Tìm hiểu ít nhất 1 chiến lược đầu tư phù hợp',desc:'Buy & Hold, DCA, hay ETF cho người mới'},
+  {id:'c8',text:'Xây dựng kế hoạch đầu tư cá nhân',desc:'Mục tiêu, thời gian, số vốn, mức chịu rủi ro'}
+];
+
+const CANDLE_DATA = [
+  {o:72000,h:74500,l:71000,c:74000,v:2850000},
+  {o:74000,h:75800,l:73200,c:75500,v:3120000},
+  {o:75500,h:76200,l:74000,c:74500,v:2650000},
+  {o:74500,h:75000,l:72500,c:72800,v:3400000},
+  {o:72800,h:73500,l:71500,c:73200,v:2900000},
+  {o:73200,h:76000,l:73000,c:75800,v:4500000},
+  {o:75800,h:77500,l:75200,c:77200,v:5100000},
+  {o:77200,h:78000,l:76000,c:76500,v:3200000},
+  {o:76500,h:77000,l:74500,c:75000,v:3800000},
+  {o:75000,h:75500,l:73000,c:73500,v:3100000},
+  {o:73500,h:74000,l:72000,c:73800,v:2700000},
+  {o:73800,h:76500,l:73500,c:76000,v:4200000},
+  {o:76000,h:77800,l:75800,c:77500,v:4800000},
+  {o:77500,h:79000,l:77000,c:78800,v:5500000},
+  {o:78800,h:80000,l:78200,c:79500,v:6200000}
+];
+
+// ===================== TICKER =====================
+function buildTicker(){
+  const stocks=[
+    {s:'VCB',p:'99,500',c:'+1,200',up:true},{s:'VIC',p:'42,300',c:'-800',up:false},
+    {s:'VNM',p:'79,500',c:'+500',up:true},{s:'FPT',p:'128,200',c:'+2,100',up:true},
+    {s:'HPG',p:'27,800',c:'-400',up:false},{s:'MWG',p:'61,000',c:'+1,500',up:true},
+    {s:'TCB',p:'24,100',c:'+300',up:true},{s:'VHM',p:'38,500',c:'-1,200',up:false},
+    {s:'ACB',p:'27,300',c:'+700',up:true},{s:'MSN',p:'71,000',c:'-200',up:false},
+    {s:'VN-Index',p:'1,247.53',c:'+5.82',up:true},{s:'HNX-Index',p:'228.11',c:'-1.23',up:false}
+  ];
+  const all=[...stocks,...stocks];
+  const wrap=document.getElementById('tickerInner');
+  wrap.innerHTML=all.map(t=>`
+    <div class="ticker-item">
+      <span class="ticker-sym">${t.s}</span>
+      <span class="ticker-val">${t.p}</span>
+      <span class="ticker-chg ${t.up?'':'dn'}">${t.c} (${t.up?'+':''})${t.up?'▲':'▼'}</span>
+    </div>`).join('');
+}
+
+// ===================== NAV =====================
+document.getElementById('menuBtn').onclick=()=>{
+  document.getElementById('mobileMenu').classList.toggle('open');
+};
+function closeMobile(){document.getElementById('mobileMenu').classList.remove('open')}
+
+// Active nav on scroll
+function updateNav(){
+  const secs=['hero','kien-thuc','dict-section','cong-cu','chien-luoc','san-giao-dich'];
+  const links=document.querySelectorAll('.nav-links a');
+  let cur='';
+  secs.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el&&window.scrollY>=el.offsetTop-120)cur=id;
+  });
+  links.forEach(a=>{
+    a.classList.remove('active');
+    const href=a.getAttribute('href').replace('#','');
+    if(href===cur)a.classList.add('active');
+  });
+}
+
+// ===================== KNOWLEDGE CARDS =====================
+function buildKnowledge(){
+  const grid=document.getElementById('knowGrid');
+  grid.innerHTML=KNOWLEDGE.map((k,i)=>`
+    <div class="know-card reveal" id="kc${i}">
+      <div class="know-card-header" onclick="toggleCard(${i})">
+        <div class="know-card-icon">${k.icon}</div>
+        <div class="know-card-title">${k.title}</div>
+        <button class="know-toggle">+</button>
+      </div>
+      <div class="know-card-body">
+        <div class="know-card-body-inner">${k.body}</div>
+      </div>
+    </div>`).join('');
+}
+function toggleCard(i){
+  const card=document.getElementById('kc'+i);
+  card.classList.toggle('open');
+}
+
+// ===================== DICTIONARY =====================
+function buildDict(){
+  const grid=document.getElementById('dictGrid');
+  grid.innerHTML=GLOSSARY.map((g,i)=>`
+    <div class="dict-item" data-name="${g.name.toLowerCase()}" data-abbr="${g.abbr.toLowerCase()}" data-def="${g.def.toLowerCase()}">
+      <div class="dict-item-top">
+        <div class="dict-name">${g.name}</div>
+        <div class="dict-abbr">${g.abbr}</div>
+      </div>
+      <div class="dict-def">${g.def}</div>
+    </div>`).join('');
+  updateDictCount();
+}
+function updateDictCount(){
+  const visible=document.querySelectorAll('.dict-item:not(.dict-hidden)').length;
+  document.getElementById('dictCount').textContent=`Hiển thị ${visible}/${GLOSSARY.length} thuật ngữ`;
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  const inp=document.getElementById('dictSearch');
+  if(inp) inp.addEventListener('input',function(){
+    const q=this.value.toLowerCase().trim();
+    document.querySelectorAll('.dict-item').forEach(el=>{
+      const match=!q||el.dataset.name.includes(q)||el.dataset.abbr.includes(q)||el.dataset.def.includes(q);
+      el.classList.toggle('dict-hidden',!match);
+    });
+    updateDictCount();
+  });
+});
+
+// ===================== INPUT FORMATTING =====================
+function fmtInput(val){
+  const raw=val.replace(/\D/g,'');
+  if(!raw)return '';
+  return parseInt(raw,10).toLocaleString('vi-VN');
+}
+function readNum(id){
+  const v=document.getElementById(id).value.replace(/\./g,'').replace(/,/g,'.').trim();
+  return parseFloat(v)||0;
+}
+function initFormatInputs(){
+  document.querySelectorAll('.fmt-money,.fmt-number').forEach(inp=>{
+    inp.addEventListener('input',function(){
+      const caret=this.selectionStart;
+      const oldLen=this.value.length;
+      const raw=this.value.replace(/\D/g,'');
+      if(!raw){this.value='';return;}
+      const formatted=parseInt(raw,10).toLocaleString('vi-VN');
+      this.value=formatted;
+      const diff=formatted.length-oldLen;
+      try{this.setSelectionRange(caret+diff,caret+diff);}catch(e){}
+    });
+    inp.addEventListener('blur',function(){
+      const raw=this.value.replace(/\D/g,'');
+      if(raw)this.value=parseInt(raw,10).toLocaleString('vi-VN');
+    });
+    inp.addEventListener('focus',function(){this.select();});
+  });
+  document.querySelectorAll('.fmt-decimal').forEach(inp=>{
+    inp.addEventListener('input',function(){
+      let v=this.value.replace(/[^\d.,]/g,'').replace(',','.');
+      const parts=v.split('.');
+      if(parts.length>2)v=parts[0]+'.'+parts.slice(1).join('');
+      this.value=v;
+    });
+  });
+}
+
+// ===================== TOOLS =====================
+const fmt=n=>Math.round(n).toLocaleString('vi-VN')+'đ';
+const fmtp=n=>n.toFixed(2)+'%';
+
+function calcFee(){
+  const p=readNum('fee_price');
+  const q=readNum('fee_qty');
+  const t=document.getElementById('fee_type').value;
+  const r=+document.getElementById('fee_rate').value/100;
+  if(!p||!q){alert('Vui lòng nhập đầy đủ thông tin!');return;}
+  const val=p*q;
+  const fee=val*r;
+  const tax=t==='sell'?val*0.001:0;
+  const total=val+fee+tax;
+  const box=document.getElementById('fee_result');
+  box.className='result-box show';
+  box.innerHTML=`
+    <div class="result-row"><span class="result-label">Giá trị giao dịch</span><span class="result-val gold">${fmt(val)}</span></div>
+    <div class="result-row"><span class="result-label">Phí môi giới (${(r*100).toFixed(2)}%)</span><span class="result-val">${fmt(fee)}</span></div>
+    ${tax?`<div class="result-row"><span class="result-label">Thuế TNCN khi bán (0.1%)</span><span class="result-val red">${fmt(tax)}</span></div>`:''}
+    <div class="result-row"><span class="result-label"><strong>Tổng thực tế ${t==='buy'?'phải trả':'thu về'}</strong></span><span class="result-val gold">${fmt(t==='buy'?total:val-fee-tax)}</span></div>
+    <div class="result-note">💡 Phí môi giới thực tế có thể thay đổi theo CTCK và loại tài khoản. Một số CTCK có phí 0đ cho lệnh nhỏ.</div>`;
+}
+
+function calcPnL(){
+  const buy=readNum('pnl_buy');
+  const sell=readNum('pnl_sell');
+  const qty=readNum('pnl_qty');
+  const div=readNum('pnl_div');
+  if(!buy||!sell||!qty){alert('Vui lòng nhập đầy đủ!');return;}
+  const cost=buy*qty;
+  const rev=sell*qty;
+  const fee_buy=cost*0.002;
+  const fee_sell=rev*0.002+rev*0.001;
+  const pnl=rev-cost+div-fee_buy-fee_sell;
+  const pct=pnl/cost*100;
+  const up=pnl>=0;
+  const box=document.getElementById('pnl_result');
+  box.className='result-box show';
+  box.innerHTML=`
+    <div class="result-row"><span class="result-label">Vốn đầu tư ban đầu</span><span class="result-val gold">${fmt(cost)}</span></div>
+    <div class="result-row"><span class="result-label">Giá trị hiện tại</span><span class="result-val">${fmt(rev)}</span></div>
+    <div class="result-row"><span class="result-label">Cổ tức đã nhận</span><span class="result-val">${fmt(div)}</span></div>
+    <div class="result-row"><span class="result-label">Phí giao dịch (ước tính)</span><span class="result-val red">${fmt(fee_buy+fee_sell)}</span></div>
+    <div class="result-row"><span class="result-label"><strong>Lãi/Lỗ thực tế</strong></span><span class="result-val ${up?'':'red'}">${up?'+':''}${fmt(pnl)}</span></div>
+    <div class="result-row"><span class="result-label"><strong>% Lợi nhuận (ROI)</strong></span><span class="result-val ${up?'':'red'}">${up?'+':''}${fmtp(pct)}</span></div>
+    <div class="result-note">💡 Phí được ước tính ở mức 0.2% mua + 0.2% bán + 0.1% thuế bán. Kết quả thực tế có thể khác.</div>`;
+}
+
+function calcDCA(){
+  const monthly=readNum('dca_monthly');
+  const months=Math.min(readNum('dca_months')||12,60);
+  const basePrice=readNum('dca_price');
+  const growth=readNum('dca_growth');
+  if(!monthly||!months||!basePrice){alert('Vui lòng nhập đầy đủ!');return;}
+  let totalShares=0,totalInvested=0;
+  let rows='';
+  let curPrice=basePrice;
+  for(let m=1;m<=months;m++){
+    const shares=monthly/curPrice;
+    totalShares+=shares;
+    totalInvested+=monthly;
+    const curVal=totalShares*curPrice;
+    if(m<=6||m===months){
+      rows+=`<tr>
+        <td>T${m}</td>
+        <td>${fmt(curPrice)}</td>
+        <td>${fmt(monthly)}</td>
+        <td>${fmt(totalInvested)}</td>
+        <td style="color:${curVal>=totalInvested?'var(--green)':'var(--red)'}">${fmt(curVal)}</td>
+      </tr>`;
+    } else if(m===7){
+      rows+=`<tr><td colspan="5" style="text-align:center;color:var(--text3);padding:.3rem">...</td></tr>`;
+    }
+    curPrice=curPrice*(1+growth/100);
+  }
+  const finalVal=totalShares*curPrice/(1+growth/100);
+  const pnl=finalVal-totalInvested;
+  const box=document.getElementById('dca_result');
+  box.className='result-box show';
+  box.innerHTML=`
+    <div class="result-row"><span class="result-label">Tổng vốn đầu tư</span><span class="result-val gold">${fmt(totalInvested)}</span></div>
+    <div class="result-row"><span class="result-label">Tổng cổ phiếu tích lũy</span><span class="result-val">${totalShares.toFixed(0)} cp</span></div>
+    <div class="result-row"><span class="result-label">Giá trị danh mục cuối kỳ</span><span class="result-val">${fmt(finalVal)}</span></div>
+    <div class="result-row"><span class="result-label"><strong>Lãi/Lỗ ước tính</strong></span><span class="result-val ${pnl>=0?'':'red'}">${pnl>=0?'+':''}${fmt(pnl)}</span></div>
+    <div style="overflow-x:auto;margin-top:.8rem">
+    <table class="dca-table">
+      <thead><tr><th>Tháng</th><th>Giá TB</th><th>Nạp/T</th><th>Tổng vốn</th><th>Giá trị</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table></div>
+    <div class="result-note">💡 Mô phỏng giả định tăng giá đều đặn ${growth}%/tháng. Thực tế thị trường biến động không đều. Không phải cam kết sinh lời.</div>`;
+}
+
+function calcPE(){
+  const price=readNum('pe_price');
+  const eps=readNum('pe_eps');
+  const sector=document.getElementById('pe_sector').value;
+  if(!price||!eps){alert('Vui lòng nhập đầy đủ!');return;}
+  const pe=price/eps;
+  const ranges={bank:[8,12],real:[10,15],retail:[15,20],tech:[15,25],gen:[12,16]};
+  const [low,high]=ranges[sector];
+  let verdict,cls;
+  if(pe<low){verdict='📉 Thấp hơn trung bình ngành — có thể đang bị định giá thấp (undervalued) hoặc công ty đang gặp khó khăn.';cls=''}
+  else if(pe<=high){verdict='✅ Trong vùng hợp lý so với trung bình ngành — không quá đắt cũng không quá rẻ.';cls=''}
+  else{verdict='📈 Cao hơn trung bình ngành — thị trường kỳ vọng tăng trưởng mạnh, hoặc cổ phiếu đang bị định giá cao (overvalued).';cls='red'}
+  const box=document.getElementById('pe_result');
+  box.className='result-box show';
+  box.innerHTML=`
+    <div class="result-row"><span class="result-label">Giá cổ phiếu</span><span class="result-val gold">${fmt(price)}</span></div>
+    <div class="result-row"><span class="result-label">EPS</span><span class="result-val">${fmt(eps)}</span></div>
+    <div class="result-row"><span class="result-label"><strong>P/E Ratio</strong></span><span class="result-val ${cls}" style="font-size:1.3rem">${pe.toFixed(2)}x</span></div>
+    <div class="result-row"><span class="result-label">P/E trung bình ngành</span><span class="result-val">${low}x – ${high}x</span></div>
+    <div class="result-note">🔍 ${verdict}<br><br>💡 P/E chỉ là một chỉ số. Cần xem thêm ROE, nợ vay, tốc độ tăng trưởng và chất lượng quản trị trước khi quyết định.</div>`;
+}
+
+// ===================== CANDLESTICK =====================
+function buildCandle(){
+  const canvas=document.getElementById('candleCanvas');
+  const tooltip=document.getElementById('candleTooltip');
+  const data=CANDLE_DATA;
+  function draw(){
+    const W=canvas.offsetWidth;const H=300;
+    canvas.width=W;canvas.height=H;
+    const ctx=canvas.getContext('2d');
+    ctx.clearRect(0,0,W,H);
+
+    // Background
+    ctx.fillStyle='#0d1520';ctx.fillRect(0,0,W,H);
+
+    // Grid
+    ctx.strokeStyle='rgba(255,255,255,0.04)';ctx.lineWidth=1;
+    for(let i=0;i<=4;i++){
+      const y=20+i*(H-40)/4;
+      ctx.beginPath();ctx.moveTo(40,y);ctx.lineTo(W-20,y);ctx.stroke();
+    }
+
+    const prices=data.flatMap(d=>[d.h,d.l]);
+    const minP=Math.min(...prices);const maxP=Math.max(...prices);
+    const rng=maxP-minP;
+    const pad=rng*0.1;
+    const lo=minP-pad;const hi=maxP+pad;
+    const toY=p=>20+(1-(p-lo)/(hi-lo))*(H-40);
+
+    // Y axis labels
+    ctx.fillStyle='rgba(100,116,139,0.8)';ctx.font='10px Be Vietnam Pro';ctx.textAlign='right';
+    for(let i=0;i<=4;i++){
+      const pv=lo+(1-i/4)*(hi-lo);
+      const y=20+i*(H-40)/4;
+      ctx.fillText((pv/1000).toFixed(0)+'k',36,y+4);
+    }
+
+    const totalW=W-60;
+    const candleW=Math.min(totalW/data.length*0.65,30);
+    const gap=totalW/data.length;
+
+    canvas.onmousemove=function(e){
+      const rect=canvas.getBoundingClientRect();
+      const mx=e.clientX-rect.left;
+      let found=null;
+      data.forEach((d,i)=>{
+        const cx=50+i*gap+gap/2;
+        if(Math.abs(mx-cx)<gap/2)found={d,i,cx};
+      });
+      if(found){
+        const {d,i,cx}=found;
+        tooltip.style.opacity='1';
+        const tx=cx+rect.left-canvas.getBoundingClientRect().left;
+        let lx=cx+10;if(lx+180>W)lx=cx-190;
+        tooltip.style.left=lx+'px';
+        tooltip.style.top='20px';
+        const up=d.c>=d.o;
+        tooltip.innerHTML=`
+          <div style="font-weight:700;color:${up?'var(--green)':'var(--red)'};margin-bottom:.4rem">Phiên ${i+1} ${up?'▲ Tăng':'▼ Giảm'}</div>
+          <div class="tt-row"><span class="tt-label">Mở</span><span class="tt-val">${d.o.toLocaleString('vi-VN')}</span></div>
+          <div class="tt-row"><span class="tt-label">Đóng</span><span class="tt-val" style="color:${up?'var(--green)':'var(--red)'}">${d.c.toLocaleString('vi-VN')}</span></div>
+          <div class="tt-row"><span class="tt-label">Cao nhất</span><span class="tt-val">${d.h.toLocaleString('vi-VN')}</span></div>
+          <div class="tt-row"><span class="tt-label">Thấp nhất</span><span class="tt-val">${d.l.toLocaleString('vi-VN')}</span></div>
+          <div class="tt-row"><span class="tt-label">KL</span><span class="tt-val">${(d.v/1000000).toFixed(2)}M cp</span></div>`;
+      } else {tooltip.style.opacity='0';}
+    };
+    canvas.onmouseleave=()=>tooltip.style.opacity='0';
+
+    // Volume bars
+    const maxVol=Math.max(...data.map(d=>d.v));
+    data.forEach((d,i)=>{
+      const cx=50+i*gap+gap/2;
+      const up=d.c>=d.o;
+      const vh=(d.v/maxVol)*40;
+      ctx.fillStyle=up?'rgba(0,212,170,0.2)':'rgba(244,63,94,0.2)';
+      ctx.fillRect(cx-candleW/2,H-vh-5,candleW,vh);
+    });
+
+    // Candles
+    data.forEach((d,i)=>{
+      const cx=50+i*gap+gap/2;
+      const up=d.c>=d.o;
+      const color=up?'#00d4aa':'#f43f5e';
+
+      // Wick
+      ctx.strokeStyle=color;ctx.lineWidth=1.5;
+      ctx.beginPath();ctx.moveTo(cx,toY(d.h));ctx.lineTo(cx,toY(d.l));ctx.stroke();
+
+      // Body
+      const bodyTop=toY(Math.max(d.o,d.c));
+      const bodyBot=toY(Math.min(d.o,d.c));
+      const bodyH=Math.max(bodyBot-bodyTop,2);
+      ctx.fillStyle=color;
+      ctx.fillRect(cx-candleW/2,bodyTop,candleW,bodyH);
+
+      // Day label
+      ctx.fillStyle='rgba(100,116,139,0.6)';ctx.font='9px Be Vietnam Pro';ctx.textAlign='center';
+      ctx.fillText("P"+(i+1),cx,H-2);
+    });
+  }
+  draw();
+  window.addEventListener('resize',draw);
+}
+// Fallback for OP ligature
+const buildCandleFix=function(){
+  const canvas=document.getElementById('candleCanvas');
+  const tooltip=document.getElementById('candleTooltip');
+  const data=CANDLE_DATA;
+  function draw(){
+    const W=canvas.offsetWidth;const H=300;
+    canvas.width=W;canvas.height=H;
+    const ctx=canvas.getContext('2d');
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle='#0d1520';ctx.fillRect(0,0,W,H);
+    ctx.strokeStyle='rgba(255,255,255,0.04)';ctx.lineWidth=1;
+    for(let i=0;i<=4;i++){
+      const y=20+i*(H-40)/4;
+      ctx.beginPath();ctx.moveTo(40,y);ctx.lineTo(W-20,y);ctx.stroke();
+    }
+    const prices=data.flatMap(d=>[d.h,d.l]);
+    const minP=Math.min(...prices);const maxP=Math.max(...prices);
+    const rng=maxP-minP;const pad=rng*0.1;
+    const lo=minP-pad;const hi=maxP+pad;
+    const toY=p=>20+(1-(p-lo)/(hi-lo))*(H-40);
+    ctx.fillStyle='rgba(100,116,139,0.8)';ctx.font='10px sans-serif';ctx.textAlign='right';
+    for(let i=0;i<=4;i++){
+      const pv=lo+(1-i/4)*(hi-lo);
+      const y=20+i*(H-40)/4;
+      ctx.fillText((pv/1000).toFixed(0)+'k',36,y+4);
+    }
+    const totalW=W-60;
+    const candleW=Math.min(totalW/data.length*0.65,28);
+    const gap=totalW/data.length;
+    const maxVol=Math.max(...data.map(d=>d.v));
+    data.forEach((d,i)=>{
+      const cx=50+i*gap+gap/2;
+      const up=d.c>=d.o;
+      const vh=(d.v/maxVol)*40;
+      ctx.fillStyle=up?'rgba(0,212,170,0.2)':'rgba(244,63,94,0.2)';
+      ctx.fillRect(cx-candleW/2,H-vh-5,candleW,vh);
+    });
+    data.forEach((d,i)=>{
+      const cx=50+i*gap+gap/2;
+      const up=d.c>=d.o;
+      const color=up?'#00d4aa':'#f43f5e';
+      ctx.strokeStyle=color;ctx.lineWidth=1.5;
+      ctx.beginPath();ctx.moveTo(cx,toY(d.h));ctx.lineTo(cx,toY(d.l));ctx.stroke();
+      const bodyTop=toY(Math.max(d.o,d.c));
+      const bodyBot=toY(Math.min(d.o,d.c));
+      const bodyH=Math.max(bodyBot-bodyTop,2);
+      ctx.fillStyle=color;
+      ctx.fillRect(cx-candleW/2,bodyTop,candleW,bodyH);
+      ctx.fillStyle='rgba(100,116,139,0.5)';ctx.font='9px sans-serif';ctx.textAlign='center';
+      ctx.fillText('P'+(i+1),cx,H-2);
+    });
+    canvas.onmousemove=function(e){
+      const rect=canvas.getBoundingClientRect();
+      const mx=e.clientX-rect.left;
+      let found=null;
+      data.forEach((d,i)=>{const cx=50+i*gap+gap/2;if(Math.abs(mx-cx)<gap/2)found={d,i,cx};});
+      if(found){
+        const {d,i,cx}=found;
+        tooltip.style.opacity='1';
+        let lx=cx+10;if(lx+190>W)lx=cx-195;
+        tooltip.style.left=lx+'px';tooltip.style.top='20px';
+        const up=d.c>=d.o;
+        tooltip.innerHTML=`<div style="font-weight:700;color:${up?'var(--green)':'var(--red)'};margin-bottom:.4rem">Phiên ${i+1} ${up?'▲ Tăng':'▼ Giảm'}</div>
+          <div class="tt-row"><span class="tt-label">Mở</span><span class="tt-val">${d.o.toLocaleString('vi-VN')}</span></div>
+          <div class="tt-row"><span class="tt-label">Đóng</span><span class="tt-val" style="color:${up?'var(--green)':'var(--red)'}">${d.c.toLocaleString('vi-VN')}</span></div>
+          <div class="tt-row"><span class="tt-label">Cao nhất</span><span class="tt-val">${d.h.toLocaleString('vi-VN')}</span></div>
+          <div class="tt-row"><span class="tt-label">Thấp nhất</span><span class="tt-val">${d.l.toLocaleString('vi-VN')}</span></div>
+          <div class="tt-row"><span class="tt-label">KL</span><span class="tt-val">${(d.v/1000000).toFixed(2)}M</span></div>`;
+      } else tooltip.style.opacity='0';
+    };
+    canvas.onmouseleave=()=>tooltip.style.opacity='0';
+  }
+  draw();
+  window.addEventListener('resize',draw);
+};
+
+// ===================== STRATEGIES =====================
+function buildStrategies(){
+  const grid=document.getElementById('stratGrid');
+  grid.innerHTML=STRATEGIES.map(s=>`
+    <div class="strat-card reveal">
+      <span class="strat-icon">${s.icon}</span>
+      <div class="strat-name">${s.name}</div>
+      <div class="strat-desc">${s.desc}</div>
+      <div class="strat-meta">
+        <span class="meta-tag meta-risk-${s.riskClass}">⚡ Rủi ro: ${s.risk}</span>
+        <span class="meta-tag meta-time">⏱ ${s.time}</span>
+        <span class="meta-tag meta-who">👤 ${s.who}</span>
+      </div>
+    </div>`).join('');
+}
+
+// ===================== BROKERS =====================
+function buildBrokers(){
+  const t=document.getElementById('brokerTable');
+  t.innerHTML=`<thead><tr>
+    <th>Công Ty CK</th><th>Phí Giao Dịch</th><th>Ứng Dụng Mobile</th><th>Margin</th><th>Phù Hợp Với</th>
+  </tr></thead><tbody>${BROKERS.map(b=>`<tr>
+    <td><span class="broker-name">${b.name}</span></td>
+    <td><span class="broker-badge ${b.badge}">${b.fee}</span></td>
+    <td>${b.app}</td>
+    <td><span class="broker-badge badge-green">${b.margin}</span></td>
+    <td style="color:var(--text2);font-size:.85rem">${b.suitable}</td>
+  </tr>`).join('')}</tbody>`;
+}
+
+// ===================== CHECKLIST =====================
+function buildChecklist(){
+  const wrap=document.getElementById('checklistWrap');
+  wrap.innerHTML=CHECKLIST_ITEMS.map(item=>{
+    const checked=localStorage.getItem(item.id)==='1';
+    return `<div class="check-item ${checked?'checked':''}" id="ci_${item.id}" onclick="toggleCheck('${item.id}')">
+      <div class="check-box">${checked?'✓':''}</div>
+      <div>
+        <div class="check-text">${item.text}</div>
+        <div class="check-desc">${item.desc}</div>
+      </div>
+    </div>`;
+  }).join('');
+  updateProgress();
+}
+function toggleCheck(id){
+  const el=document.getElementById('ci_'+id);
+  const now=localStorage.getItem(id)==='1';
+  localStorage.setItem(id,now?'0':'1');
+  el.classList.toggle('checked',!now);
+  el.querySelector('.check-box').textContent=now?'':'✓';
+  const txt=el.querySelector('.check-text');
+  if(now)txt.style.textDecoration='';else txt.style.textDecoration='line-through';
+  updateProgress();
+}
+function updateProgress(){
+  const total=CHECKLIST_ITEMS.length;
+  const done=CHECKLIST_ITEMS.filter(i=>localStorage.getItem(i.id)==='1').length;
+  document.getElementById('progressFill').style.width=(done/total*100)+'%';
+  document.getElementById('progressLabel').textContent=`Đã hoàn thành ${done}/${total} bước${done===total?' 🎉 Xuất sắc!':''}`;
+}
+
+// ===================== SCROLL REVEAL =====================
+function initReveal(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+  },{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+}
+
+// ===================== INIT =====================
+document.addEventListener('DOMContentLoaded',()=>{
+  buildTicker();
+  buildKnowledge();
+  buildDict();
+  buildStrategies();
+  buildBrokers();
+  buildChecklist();
+  initFormatInputs();
+  setTimeout(()=>{buildCandleFix();},100);
+  window.addEventListener('scroll',updateNav,{passive:true});
+  setTimeout(initReveal,100);
+});
+</script>
+</body>
+</html>
