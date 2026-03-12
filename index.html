@@ -188,7 +188,7 @@ section{padding:5rem 2rem;max-width:1400px;margin:0 auto}
 .know-card-body{
   max-height:0;overflow:hidden;transition:max-height .35s ease;
 }
-.know-card.open .know-card-body{max-height:400px}
+.know-card.open .know-card-body{max-height:500px;overflow-y:auto}
 .know-card-body-inner{padding:1.2rem 1.6rem 1.5rem;color:var(--text2);font-size:.9rem;line-height:1.75}
 .know-card-body-inner strong{color:var(--green)}
 .know-card-body-inner .tag{
@@ -834,7 +834,7 @@ const GLOSSARY = [
   {name:'BCTC (Báo Cáo Tài Chính)',abbr:'BCTC',def:'Báo cáo tài chính định kỳ (quý/năm) của công ty. Gồm: Bảng cân đối kế toán, Kết quả kinh doanh, Lưu chuyển tiền tệ.'},
   {name:'ETF (Exchange-Traded Fund)',abbr:'ETF',def:'Quỹ hoán đổi danh mục — đầu tư rổ nhiều cổ phiếu theo một chỉ số. Phổ biến: FUEVFVND (VN30), E1VFVN30.'},
   {name:'Lướt Sóng (Trading)',abbr:'TRADE',def:'Giao dịch ngắn hạn (T+3 đến vài tuần), mua thấp bán cao dựa trên phân tích kỹ thuật. Rủi ro cao, cần kinh nghiệm.'},
-  {name:'DCA (Dollar-Cost Averaging)',abbr:'DCA',def:'Chiến lược đầu tư đều đặn một khoản cố định mỗi tháng, bất kể giá lên hay xuống. Giảm rủi ro timing thị trường.'},
+  {name:'DCA (Dollar-Cost Averaging)',abbr:'DCA',def:'Chiến lược đầu tư đều đặn một khoản cố định hàng tháng, bất kể giá lên hay xuống. Giảm rủi ro timing.'},
   {name:'ROA (Return on Assets)',abbr:'ROA',def:'Lợi nhuận trên tổng tài sản. Đo hiệu quả sử dụng tài sản. ROA >5% thường được đánh giá tốt.'},
   {name:'Phân Tích Kỹ Thuật',abbr:'TA',def:'Phân tích biểu đồ giá và khối lượng để dự đoán xu hướng giá. Dùng các chỉ báo: MA, RSI, MACD, Bollinger Bands...'}
 ];
